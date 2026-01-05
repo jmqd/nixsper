@@ -6,7 +6,6 @@
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
-      # Configure nixpkgs to allow unfree software
       pkgs = import nixpkgs {
         inherit system;
         config = {
@@ -117,7 +116,6 @@
       };
 
       devShells.${system}.default = pkgs.mkShell {
-        # Include the package dependencies + dev tools
         inputsFrom = [ nixsperPackage ];
 
         buildInputs = with pkgs; [
